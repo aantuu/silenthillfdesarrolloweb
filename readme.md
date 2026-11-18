@@ -9,6 +9,12 @@ Proyecto web de una base de datos y wiki interactiva inspirada en *Silent Hill f
 
 # ¿Cómo iniciar el proyecto?
 1. Configurar la base de datos en MYSQL con el archivo SQL del proyecto.
-2. Ir a la carpeta del backend e instalar dependencias: "npm install".
-3. Iniciar el servidor: "node server.js"
-4. Abrir "frontend/index.html" en live server o en el navegador.
+2. Crear el archivo .env con tus credenciales en este formato:
+   DB_HOST=localhost
+   DB_USER=tu_usuario
+   DB_PASSWORD=tu_contraseña
+   DB_NAME=silenthillf
+   PORT=3000
+3. Ir a la carpeta del backend e instalar dependencias: "npm install" y "npm install dotenv".
+4. Iniciar el servidor: "node server.js"
+5. Abrir "frontend/index.html" en live server o en el navegador.
