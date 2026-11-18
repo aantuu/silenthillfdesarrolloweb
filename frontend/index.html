@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es" data-bs-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Silent Hill f | Wiki de Ebisugaoka</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Special+Elite&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../frontend/css/style.css">
+</head>
+
+<body>
+
+    <header class="navbar-sh sticky-top border-bottom border-secondary border-opacity-25">
+        <nav class="container py-3 d-flex flex-wrap justify-content-between align-items-center gap-3"
+            aria-label="Navegación principal">
+            <a href="#" class="text-decoration-none d-flex align-items-center gap-3" onclick="reiniciarVista(event)">
+                <div class="logo-emblem d-flex align-items-center justify-content-center">
+                    <i class="bi bi-flower1 text-danger fs-2"></i>
+                </div>
+                <div>
+                    <span class="d-block fs-3 fw-light tracking-widest text-white lh-1">
+                        SILENT HILL <strong class="text-danger fw-bold fst-italic">f</strong>
+                    </span>
+                    <small class="text-uppercase text-secondary tracking-wide" style="font-size: 0.7rem;">
+                        Wiki
+                    </small>
+                </div>
+            </a>
+
+            <div class="d-flex flex-wrap align-items-center gap-2">
+                <select id="filtroSeccion" class="form-select form-select-sm select-sh"
+                    aria-label="Secciones del Archivo">
+                    <option value="TODAS">Secciones del Archivo</option>
+                    <option value="armas">Armas y Herramientas</option>
+                    <option value="consumibles">Consumibles</option>
+                    <option value="objetos">Objetos y Documentos</option>
+                </select>
+
+                <div class="input-group input-group-sm search-sh">
+                    <span class="input-group-text bg-transparent border-end-0 text-secondary">
+                        <i class="bi bi-search"></i>
+                    </span>
+                    <input type="text" id="buscadorGlobal" class="form-control bg-transparent border-start-0 text-light"
+                        placeholder="Filtrar archivo...">
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container my-4">
+        <section class="hero-banner rounded-3 p-4 p-md-5 mb-5 position-relative overflow-hidden">
+            <div class="row align-items-center position-relative z-1 g-4">
+                <div class="col-lg-8">
+                    <h1 class="display-6 fw-bold text-white mb-0">
+                        Guía de Supervivencia y Archivo de Ebisugaoka
+                    </h1>
+                </div>
+                <div class="col-lg-4">
+                    <aside class="stats-box rounded-2 p-3 small">
+                        <div class="d-flex justify-content-between text-light mb-1">
+                            <span><strong>ARMAS</strong></span>
+                            <span id="countArmas" class="text-danger fw-bold">(0)</span>
+                        </div>
+                        <div class="d-flex justify-content-between text-light mb-1">
+                            <span><strong>CONSUMIBLES</strong></span>
+                            <span id="countConsumibles" class="text-danger fw-bold">(0)</span>
+                        </div>
+                        <div class="d-flex justify-content-between text-light">
+                            <span><strong>OBJETOS</strong></span>
+                            <span id="countObjetos" class="text-danger fw-bold">(0)</span>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </section>
+
+        <div id="alertaConexion"></div>
+
+        <section id="seccionArmas" class="mb-5">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h2 class="h4 fw-bold text-white mb-0">Armas y Herramientas</h2>
+                <select id="filtroDano" class="form-select form-select-sm w-auto select-sh">
+                    <option value="TODOS">Daño: Todos</option>
+                    <option value="Alto">Daño: Alto</option>
+                    <option value="Medio">Daño: Medio</option>
+                    <option value="Bajo">Daño: Bajo</option>
+                    <option value="Bajo/Alto">Daño: Bajo/Alto</option>
+                </select>
+            </div>
+            <div id="gridArmas" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4"></div>
+        </section>
+
+        <section id="seccionConsumibles" class="mb-5">
+            <h2 class="h4 fw-bold text-white mb-3">Consumibles</h2>
+            <div class="table-responsive rounded-2 border border-secondary border-opacity-25">
+                <table class="table table-dark table-hover align-middle mb-0 tabla-sh">
+                    <thead>
+                        <tr class="text-secondary small text-uppercase">
+                            <th scope="col" style="width: 70px;">ID</th>
+                            <th scope="col" style="width: 220px;">Nombre</th>
+                            <th scope="col">Efecto</th>
+                            <th scope="col">Descripción</th>
+                            <th scope="col" class="text-end" style="width: 60px;"></th>
+                        </tr>
+                    </thead>
+                    <tbody id="tablaConsumibles"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="seccionObjetos" class="mb-5">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h2 class="h4 fw-bold text-white mb-0">Objetos Clave y Documentos</h2>
+                <select id="filtroTipoObjeto" class="form-select form-select-sm w-auto select-sh">
+                    <option value="TODOS">Tipo: Todos</option>
+                    <option value="Ofrenda">Ofrenda</option>
+                    <option value="Objeto clave">Objeto clave</option>
+                    <option value="Documento">Documento</option>
+                </select>
+            </div>
+            <div class="table-responsive rounded-2 border border-secondary border-opacity-25">
+                <table class="table table-dark table-hover align-middle mb-0 tabla-sh">
+                    <thead>
+                        <tr class="text-secondary small text-uppercase">
+                            <th scope="col" style="width: 70px;">ID</th>
+                            <th scope="col" style="width: 260px;">Nombre</th>
+                            <th scope="col" style="width: 150px;">Tipo</th>
+                            <th scope="col">Descripción</th>
+                            <th scope="col" class="text-end" style="width: 60px;"></th>
+                        </tr>
+                    </thead>
+                    <tbody id="tablaObjetos"></tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <div class="modal fade" id="modalFicha" tabindex="-1" aria-labelledby="modalTitulo" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content modal-sh text-light">
+                <div class="modal-header border-bottom border-danger border-opacity-50">
+                    <h3 class="modal-title h5 fw-bold" id="modalTitulo">Detalle del Registro</h3>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body" id="modalCuerpo"></div>
+                <div class="modal-footer border-top border-secondary border-opacity-25">
+                    <button type="button" class="btn btn-sm btn-danger px-4" data-bs-dismiss="modal">Cerrar
+                        archivo</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="text-center py-4 border-top border-secondary border-opacity-25 text-secondary small">
+        <div class="container">
+            Archivo Base de Datos <code>silenthillf</code>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../frontend/js/app.js"></script>
+</body>
+
+</html>

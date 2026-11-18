@@ -1,0 +1,135 @@
+:root {
+    --bg-main: #121316;
+    --bg-card: #1b1c20;
+    --bg-elevated: #23252a;
+    --accent-crimson: #9e2a2b;
+    --accent-crimson-hover: #b83234;
+    --border-subtle: rgba(255, 255, 255, 0.08);
+}
+
+body {
+    background-color: var(--bg-main);
+    background-image: 
+        radial-gradient(circle at 12% 20%, rgba(158, 42, 43, 0.14) 0%, transparent 35%),
+        radial-gradient(circle at 88% 75%, rgba(158, 42, 43, 0.12) 0%, transparent 40%);
+    background-attachment: fixed;
+    color: #e4e4e7;
+    font-family: 'Special Elite', 'Courier New', Courier, monospace;
+}
+
+h1, h2, h3, h4, h5, h6, .navbar-sh span, .badge, .btn-ficha {
+    font-family: 'Cinzel', serif;
+    letter-spacing: 0.08em;
+}
+
+.navbar-sh {
+    background-color: rgba(15, 16, 19, 0.92);
+    backdrop-filter: blur(8px);
+}
+
+.tracking-widest {
+    letter-spacing: 0.18em;
+}
+
+.tracking-wide {
+    letter-spacing: 0.12em;
+}
+
+.select-sh {
+    background-color: #18191d;
+    border: 1px solid #4a2528;
+    color: #e4e4e7;
+    min-width: 195px;
+}
+
+.select-sh:focus {
+    background-color: #18191d;
+    border-color: var(--accent-crimson);
+    box-shadow: 0 0 0 0.2rem rgba(158, 42, 43, 0.25);
+    color: #fff;
+}
+
+.search-sh {
+    background-color: #18191d;
+    border: 1px solid var(--border-subtle);
+    border-radius: 0.375rem;
+    width: 230px;
+}
+
+.search-sh .form-control:focus {
+    box-shadow: none;
+}
+
+.hero-banner {
+    background: linear-gradient(105deg, #4b1418 0%, #2a1216 55%, #1c1d21 100%);
+    border: 1px solid rgba(184, 50, 52, 0.35);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
+}
+
+.stats-box {
+    background-color: rgba(15, 16, 19, 0.72);
+    border: 1px solid var(--border-subtle);
+}
+
+.weapon-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: 0.5rem;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.weapon-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(184, 50, 52, 0.55);
+}
+
+.weapon-thumb {
+    width: 72px;
+    height: 72px;
+    background: radial-gradient(circle, #2b2d33 0%, #141518 100%);
+    border: 1px solid var(--border-subtle);
+    border-radius: 0.375rem;
+    flex-shrink: 0;
+}
+
+.badge-dano {
+    background-color: var(--accent-crimson);
+    color: #fff;
+    font-weight: 600;
+    font-size: 0.75rem;
+}
+
+.btn-ficha {
+    background-color: var(--accent-crimson);
+    border: none;
+    color: #fff;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+}
+
+.btn-ficha:hover {
+    background-color: var(--accent-crimson-hover);
+    color: #fff;
+}
+
+.tabla-sh {
+    --bs-table-bg: #18191d;
+    --bs-table-hover-bg: #22242a;
+    --bs-table-border-color: rgba(255, 255, 255, 0.06);
+}
+
+.btn-info-icon {
+    color: #a1a1aa;
+    background: transparent;
+    border: none;
+    transition: color 0.15s ease;
+}
+
+.btn-info-icon:hover {
+    color: #ef4444;
+}
+
+.modal-sh {
+    background-color: #18191d;
+    border: 1px solid #4a2528;
+}
